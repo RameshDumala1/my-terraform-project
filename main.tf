@@ -1,12 +1,13 @@
 provider "aws" {
-  region = "us-east-1"
+  region = var.aws_region
 }
 
-resource "aws_instance" "example" {
-  ami           = "ami-085386e29e44dacd7"  # Amazon Linux 2 AMI
-  instance_type = "t2.micro"
+resource "aws_instance" "my_ec2" {
+  ami           = var.ami_id
+  instance_type = var.instance_type
+  key_name      = var.key_name
 
   tags = {
-    Name = "Jenkins-Terraform-Instance"
+    Name = "Jenkins-Terraform-EC2"
   }
 }
